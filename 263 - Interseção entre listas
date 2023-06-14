@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <math.h>
+
+int rep (int n, int x, int function[])
+{
+	int i;
+	for (i = 0; i < x; i++)
+	{
+		if (function[i] == n)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int main ()
+{
+	int n[20], m[20], intersection[20], x = 0, i, j, repeat = 0;
+    //ESCANEANDO PRIMEIRO ARRAY
+	for (i = 0; i < 20; i++)
+	{
+		scanf ("%d", &n[i]);
+	}
+    //ESCANEANDO SEGUNDO ARRAY
+	for (i = 0; i < 20; i++)
+	{
+		scanf ("%d", &m[i]);
+	}
+	//AVALIANDO A INTERSECS�O
+	for (i = 0; i < 20; i++)
+	{
+		for (j = 0; j < 20; j++)
+		{
+			if (n[i] == m[j])
+			{
+				if (x != 0){
+				repeat = rep(n[i], x, intersection); //ANALISAR SE J� TEM O MESMO N�MERO
+				}
+
+				if (repeat == 0)
+				{
+					intersection[x] = n[i];
+					x++;
+				}
+				else
+				{
+				    repeat = 0;
+				}
+			}
+		}
+	}
+
+	if (x != 0)
+	{
+		//ORDEM CRESCENTE
+		int aux;
+		for (i = 0; i < x; i++)	{
+			for (j = i+1; j < x; j++)
+			{
+				if (intersection[i] > intersection[j])
+				{
+					aux = intersection[i];
+					intersection[i] = intersection[j];
+					intersection[j] = aux;
+				}
+			}
+		}
+		//IMPRIMINDO ARRAY
+		for (i = 0; i < x; i++)
+		{
+			printf ("%d\n", intersection[i]);
+		}
+	}
+	else
+	{
+		printf("VAZIO");
+	}
+
+	return 0;
+}
