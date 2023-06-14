@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    char n[20];
+    scanf ("%s", n);
+    int i, y, r, var = 1, soma = 0;
+    
+    while (var != 0)
+    {
+        y = strlen(n);
+    
+        for (i = 0; i < y; i++)
+        {
+        	var = n[i] - '0';
+        	
+        	if (var % 2 == 0)
+        	{
+        		r = var * 2 * (y - i);
+        	}
+        	else
+            {
+        	    r = var * 3 * (y - i);
+            }
+            
+            soma = soma + r;
+        }
+        
+        printf("%d", soma);
+        
+        soma = 0;
+        scanf ("%s", n);
+        var = n[0] - '0';
+        if (var != 0)
+        {
+            printf("\n");
+        }
+    }
+        
+	return 0;
+}
