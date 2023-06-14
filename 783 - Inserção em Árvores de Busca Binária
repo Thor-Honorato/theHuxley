@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct binary_tree 
+{
+    int value;
+    struct binary_tree *left;
+    struct binary_tree *right;
+} bt;
+
+bt* empty_binary_tree() 
+{
+    return NULL;
+}
+
+bt* create_binary_tree(int item, bt *left, bt *right)
+{
+    bt *new_bt = (bt*) malloc(sizeof(bt));
+    new_bt->left = left;
+    new_bt->right = right;
+    new_bt->value = item;
+
+    return new_bt;
+}
+
+int is_empty(bt *new_bt)
+{
+    return new_bt == NULL;
+}
+
+bt* add(bt *new_bt, int item)
+{
+    if (new_bt == NULL)
+    {
+        new_bt = create_binary_tree(item, NULL, NULL);
+    }
+
+    else
+    {
+        if (new_bt->value > item)
+        {
+            new_bt->left = add(new_bt->left, item);
+        }
+
+        else
+        {
+            new_bt->right = add(new_bt->right, item);
+        }
+    }
+    return new_bt;
+}
+
+bt* search(bt *new_bt, int item)
+{
+    if (new_bt == NULL || new_bt->value == item) 
+    {
+        return new_bt;
+    }
+
+    else
+    {
+        if (new_bt->value > item)
+        {
+            return search(new_bt->left, item);
+        }
+
+        else
+        {
+            return search(new_bt->right, item);
+        }
+    }
+
+}
+
+void print_pre_order(bt *new_bt) 
+{
+    if (!is_empty(new_bt))
+    {
+        printf(" ( ");
+        printf("%d ", new_bt->value);
+
+
+        if (new_bt->left == NULL)
+        {
+            printf(" () ");
+        }
+
+        else
+        {
+            print_pre_order(new_bt->left);
+        }
+
+        if (new_bt->right == NULL)
+        {
+            printf(" () ");
+        }
+
+        else
+        {
+            print_pre_order(new_bt->right);
+        }
+
+        printf(") ");
+    }
+}
+
+int main()
+{
+    int value;
+
+    bt *new_bt = empty_binary_tree(); 
+
+    while(scanf("%d", &value) != EOF)
+    {
+        printf("----\nAdicionando %d\n  ", value);
+        
+        new_bt = add(new_bt, value);
+        
+        print_pre_order(new_bt);
+        printf("\n");
+    }
+    printf("----");
+    return 0;
+}
