@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int calculus(int size, char *alfa, int i, int cont, int In);
+
+
+int main()
+{
+    int MAX, acumulator, i, j, In = 0;
+    char alfa[50];
+
+    scanf("%d", &MAX);
+
+    for (i = 0; i < MAX; i++)
+    {
+        int rep;
+        scanf("%d", &rep);
+
+        for (j = 0; j < rep; j++)
+        {
+
+            scanf("%s", alfa);
+            int size = strlen(alfa);
+
+            acumulator += calculus(size, alfa, 0, 0, In);
+
+            In++;
+        }
+
+        printf("%d\n", acumulator);
+
+        acumulator = 0;
+        In = 0;
+    }
+
+    return 0;
+}
+
+
+int calculus(int size, char *alfa, int i, int cont, int In)
+{
+    if (i == size)
+    {
+        return cont;
+    }
+
+    cont += (alfa[i] - 'A') + In + i;
+
+    calculus(size, alfa, i + 1, cont, In);
+}
