@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() 
+{
+	int a, b, c;
+	int h, l;
+	scanf ("%d %d %d %d %d", &a, &b, &c, &h, &l);
+
+    if (h >= a && l >= b || h >= b && l >= a) {
+        printf("S");
+	}
+	else if (h >= a && l >= c || h >= c && l >= a) {
+		printf("S");
+	}
+	else if (h >= b && l >= c || h >= c && l >= b) {
+		printf("S");
+	}
+	else
+		printf("N");
+
+	return 0;
+}
