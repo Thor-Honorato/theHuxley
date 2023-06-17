@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+int main ()
+{
+	int n;
+	scanf ("%d", &n);
+
+	int i, desabamento[n];
+	for (i = 0; i < n; i++)
+	{
+		scanf ("%d", &desabamento[i]);
+	}
+//ANALISANDO O PONTO A DIREITA
+	int d = 0, ponto[n];
+	for (i = n-1; i > 1; i--)
+	{
+		if (desabamento[i] < desabamento[i-1])
+		{
+			ponto[d] = i-1;
+			d++;
+		}
+		else
+		{
+			i = -1;
+		}
+	}
+//ANALISANDO O PONTO A ESQUERDA
+	int e = 0, ponto2[n];
+	for (i = 0; i < n-2; i++)
+	{
+		if (desabamento[i] < desabamento[i+1])
+		{
+			ponto2[e] = i+1;
+			e++;
+		}
+		else
+		{
+			i = n;
+		}
+	}
+//ANALISANDO SE HOUVE DESABAMENTO A ESQUERDA
+	if (e > 0)
+	{
+		int aux2 = e;
+		e = 0;	
+		printf ("Desabamento a esquerda: %d ", ponto2[e]);
+		for (e = 1; e < aux2; e++)
+		{
+			printf("%d ", ponto2[e]);
+		}
+		printf("\n");
+	}
+	else
+	{
+		printf("Nao ocorreu nenhum desabamento a esquerda\n");
+	}
+//ANALISANDO SE HOUVE DESABAMENTO A DIREITA
+	if (d > 0)
+	{
+		d = d - 1;
+		printf ("Desabamento a direita: %d ", ponto[d]);
+		for (d = d - 1; d >= 0; d--)
+		{
+			printf("%d ", ponto[d]);
+		}
+		printf("\n");
+	}
+	else
+	{
+		printf("Nao ocorreu nenhum desabamento a direita\n");
+	}
+
+	return 0;
+}
