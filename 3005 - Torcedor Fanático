@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <math.h>
+
+int main () 
+{
+	int C, T, A, L, E;
+	float lesoes, torcedor, vitoria, entrosamento = 0;
+	scanf("%d %d %d %d %d", &C, &T, &A, &L, &E);
+
+	lesoes = (L * 2.7) * (-1);
+
+
+//Jogo em Casa
+	if (C == 1) {
+
+	//Entrosamento e Quantidade de Torcedores do Time
+		if (E > 0) {
+			entrosamento = E * 2.7;
+		}
+		else {
+			entrosamento = (E * 1.8) * (-1);
+		}
+		if (A > 40000) {
+			torcedor = A * 0.0008;
+		}
+		else {
+			torcedor = (A * 0.0008) * (-1);
+		}
+		
+	//Fim.
+			float sol = (33.21), neve = (10.51), chuva = (-20.7);
+			if (T == 1) {
+				vitoria = (100 + sol + torcedor + lesoes + entrosamento);
+				if (vitoria > 100) {
+					vitoria = 100;
+				}
+				printf ("A chance de vitoria do flamengo e de %.2f\n", vitoria);
+			}
+			if (T == 2) {
+				vitoria = (100 + neve + torcedor + lesoes + entrosamento);
+				if (vitoria > 100) {
+					vitoria = 100;
+				}
+				printf ("A chance de vitoria do flamengo e de %.2f\n", vitoria);
+			}
+			if (T == 3) {
+				vitoria = (100 + chuva + torcedor + lesoes + entrosamento);
+				if (vitoria > 100) {
+					vitoria = 100;
+				}
+				printf ("A chance de vitoria do flamengo e de %.2f\n", vitoria);
+			}
+		}
+
+//Jogo Fora de Casa
+	else {
+
+	//Entrosamento e Quantidade de Torcedores do Time
+		if (E > 0) {
+			entrosamento = E * 5.2;
+		}
+		else {
+			entrosamento = (E * 1.5) * (-1);
+		}
+		if (A > 45000) {
+			torcedor = (L * 0.0003) * (-1);
+		}
+		else {
+			torcedor = (L * 0.0001) * (-1);
+		}
+	//Fim.
+			float sol = (-10.87);
+			if (T == 1) {
+				vitoria = (100 + sol + torcedor + lesoes + entrosamento);
+				if (vitoria > 100) {
+					vitoria = 100;
+				}
+				printf ("A chance de vitoria do flamengo e de %.2f\n", vitoria);
+			}
+			if (T == 2 || T == 3) {
+				vitoria = 0;
+				printf ("A chance de vitoria do flamengo e de %.2f\n", vitoria);
+			}
+		}
+
+	return 0;
+}
