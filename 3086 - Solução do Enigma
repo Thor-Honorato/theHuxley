@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int contador (int n, int m, int matriz[n][m], int PosI, int PosJ)
+{
+	int i = PosI, j = PosJ, j2 = PosJ + 1, a, b, c, d;
+
+	if (matriz[i][j2] >= 0 && matriz[i][j2] <= 3 && i < n && j2 < m && matriz[i][j2] != matriz[i][j])
+	{
+		a = matriz[i][j];
+		b = matriz[i][j2];
+		i++;
+		c = matriz[i][j];
+		d = matriz[i][j2];
+		if (matriz[i][j] >= 0 && matriz[i][j] <= 3 && matriz[i][j2] >= 0 && matriz[i][j2] <= 3 && i < n && j2 < m && c != d && c != a && c != b && a != d && b != d)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int main ()
+{
+	int n, m, i, j, cont = 0;
+	scanf ("%d %d", &n, &m);
+	int matriz[n][m];
+
+
+//VALORES DA MATRIZ
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			scanf ("%d", &matriz[i][j]);
+		}
+	}
+
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			if (matriz[i][j] >= 0 && matriz[i][j] <= 3)
+			{
+				cont = cont + contador(n, m, matriz, i, j);
+			}
+		}
+	}
+
+//IMPRESS�O
+	printf ("%d\n", cont);
+
+	return 0;
+}
