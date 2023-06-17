@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct BinaryTree {
+    int item;
+    int height;
+    struct BinaryTree *left;
+    struct BinaryTree *right;
+} Tree;
+
+Tree *create_binary_tree(int value, Tree *left, Tree *right) {
+
+    Tree *bt = (Tree*) malloc(sizeof(Tree));
+
+    bt->item = value;
+    bt->left = NULL;
+    bt->right = NULL;
+
+    return bt;
+}
+
+Tree* construct_binary_tree(char *str, int *pos) {
+
+    //ponteiro para a arvore
+    Tree *bt = NULL;
+
+    int i = 0, number;       //number = numero do no (inteiro)
+    //numero do No em (string)
+    char numStr[50];
+
+    while(str[*pos] == '(') { //funcao para ignorar os parenteses abrindo
+        *pos += 1;
+    }
+
+    if(str[*pos] == ')') { //se encontrar parentese fechando em seguida " () " -> retorna null
+        *pos += 1;         // pois o ponteiro eh nulo
+        return bt;
+    }
+    else {
+        while(str[*pos] != '(') {    //se for diferente de "abre parenteses"
+
+            //le o numero em string
+            numStr[i++] = str[*pos];
+
+            *pos += 1;
+        }
+
+        numStr[i] = '\0'; //finalizando a string com '/0'
+        //converter o numero de string para inteiro
+        number = atoi(numStr);
+
+        bt = create_binary_tree(number, NULL, NULL); //cria um no com o numero inteiro
+        bt->left = construct_binary_tree(str, pos);  //constroi a arvore para o no esquerdo
+        bt->right = construct_binary_tree(str, pos); //constroi a arvore para o no direito
+    }
+
+    *pos += 1;
+
+    return bt;
+}
+
+Tree *search(Tree *bt, int item, int *cont) {
+
+    Tree *chaining = bt;
+    *cont += 1;
+
+    if ((chaining == NULL) || (chaining->item == item))
+    {
+        return chaining;
+    }
+    else if (chaining->item > item)
+    {
+        search(chaining->left, item, cont);
+    }
+    else
+    {
+        search(chaining->right, item, cont);
+    }
+}
+
+int main() {
+    int i = 0, pos = 0, cont = -1, item;
+    char str[100];
+
+    Tree *bt = NULL;
+
+    scanf("%[^\n]", str);
+    scanf("%d", &item);
+
+    int size = strlen(str);
+    int flag = 0;
+
+    bt = construct_binary_tree(str, &pos);
+
+    if (search(bt, item, &cont)) {
+        printf("ESTA NA ARVORE\n%d\n", cont);
+    } else {
+        printf("NAO ESTA NA ARVORE\n%d\n", -1);
+    }
+
+
+    return 0;
+}
