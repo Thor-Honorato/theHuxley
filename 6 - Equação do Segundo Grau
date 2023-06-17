@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <math.h>
+
+int main () 
+{
+	float a, b, c, delta;
+	float baskarap, baskaran;
+	scanf ("%f %f %f", &a, &b, &c);
+
+	delta = (b * b) - (4 * a * c);
+
+	if (delta < 0) {
+		printf("NRR\n");	
+	}
+	else if (a == 0) {
+		printf("NEESG\n");
+	}
+	else if (delta == 0) {
+		int denominador = 2 * a;
+
+		baskarap = -b / denominador;
+		baskaran = -b / denominador;
+
+		printf("%.2f\n%.2f\n", baskarap, baskaran);
+	}
+	else {
+		int denominador = 2 * a;
+		baskarap = (-b + sqrt(delta));
+		baskarap = baskarap / denominador;
+		baskaran = (-b - sqrt(delta));
+		baskaran = baskaran / denominador;
+
+		printf("%.2f\n%.2f\n", baskarap, baskaran);
+	}
+
+	return 0;
+}
