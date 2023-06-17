@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main () 
+{
+	int pontos = 0;
+	float vm, vm1, vm2, v, multa = 0.00;
+	scanf("%f %f", &vm, &v);
+
+	vm1 = vm + (vm * 0.2);
+	vm2 = vm + (vm * 0.5);
+
+	if (v <= vm) {
+		printf("%.2f\n%d", multa, pontos);
+	}
+	else if (v <= vm1) {
+		multa = 85.13;
+		pontos = 4;
+		printf("%.2f\n%d\n", multa, pontos);
+	}
+	else if (v <= vm2) {
+		multa = 127.69;
+		pontos = 5;
+		printf("%.2f\n%d\n", multa, pontos);
+	}
+	else {
+		multa = 574.62;
+		pontos = 7;
+		printf("%.2f\n%d\n", multa, pontos);
+	}
+
+	return 0;
+}
