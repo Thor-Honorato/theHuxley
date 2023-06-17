@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int main ()
+{
+	int *pares;
+	int *impares;
+	int i, j, num, contadorp = 0, contadori = 0;
+
+	pares = malloc(sizeof(int) *5);
+	impares = malloc(sizeof(int) *5);
+
+	for (i = 0; i < 15; i++)
+	{
+		scanf ("%d", &num);
+
+		if (num % 2 == 0)
+		{
+			pares[contadorp] = num;
+			contadorp++;
+		}
+		else
+		{
+			impares[contadori] = num;
+			contadori++;
+		}
+
+		if (contadorp == 5)
+		{
+			for (j = 0; j < 5; j++)
+			{
+				printf("par[%d] = %d\n", j, pares[j]);
+			}
+			contadorp = 0;
+		}
+		if (contadori == 5)
+		{
+			for (j = 0; j < 5; j++)
+			{
+				printf("impar[%d] = %d\n", j, impares[j]);
+			}
+			contadori = 0;
+		}
+	}
+
+	for (j = 0; j < contadori; j++)
+	{
+		printf("impar[%d] = %d\n", j, impares[j]);
+	}
+	for (j = 0; j < contadorp; j++)
+	{
+		printf("par[%d] = %d\n", j, pares[j]);
+	}
+
+	return 0;
+}
