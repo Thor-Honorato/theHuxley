@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    float a, b, resultado;
+	scanf ("%f %f", &a, &b);
+	char op[14], multiplicacao[14], divisao[8], soma[5], subtracao[10];
+	scanf ("%s", op);
+	strcpy (multiplicacao, "multiplicacao");
+	strcpy (divisao, "divisao");
+	strcpy (subtracao, "subtracao");
+	strcpy (soma, "soma");
+	
+	if (strcmp (op, multiplicacao) == 0)
+	{
+		resultado = a * b;
+		printf("resultado = %.2f\n", resultado);
+	}
+	if (strcmp (op, divisao) == 0)
+	{
+		resultado = a / b;
+		printf("resultado = %.2f\n", resultado);
+	}
+	if (strcmp (op, subtracao) == 0)
+	{
+		resultado = a - b;
+		printf("resultado = %.2f\n", resultado);
+	}
+	if (strcmp (op, soma) == 0)
+	{
+		resultado = a + b;
+		printf("resultado = %.2f\n", resultado);
+	}
+
+	return 0;
+}
